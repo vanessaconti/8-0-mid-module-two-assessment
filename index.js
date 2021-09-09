@@ -80,7 +80,14 @@ const exampleMovies = require("./movies");
       // Toy Story 4
     };
  */
-function findById() {}
+    function findById(movies, id) {
+      if (movies.length === 0) throw "Error occured!"
+      
+      let result = movies.find(movie => movie.imdbID === id);
+      
+      if(!result) return null;
+      return result;
+    }
 
 /**
  * filterByGenre()
