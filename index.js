@@ -111,7 +111,12 @@ const exampleMovies = require("./movies");
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+    function filterByGenre(movies, genre) {
+      if (movies.length === 0) {
+        throw "There are no movies available";
+      };
+      return movies.filter((movie) => movie.genre.toLowerCase().includes(genre.toLowerCase()));
+    };
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -137,7 +142,12 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+    function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+      if (movies.length === 0) {
+        throw "There are no movies available";
+      };
+      return movies.filter((movie) => movie.released.slice(-4) <= year);
+    };
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -163,7 +173,16 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+    function getRottenTomatoesScoreByMovie(movies) {
+      if (!movies.length){
+        throw 'inputted `movies` array is empty'
+      }
+      return movies.map(movie => {
+        let newArr = {}
+        newArr[movie.title] = movie.ratings.find(rating => rating.source=== 'Rotten Tomatoes').value
+        return newArr
+      })
+    }
 
 // Do not change anything below this line.
 module.exports = {
